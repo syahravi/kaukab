@@ -10,9 +10,9 @@ Sebelum memulai instalasi, pastikan sistem kamu telah memenuhi persyaratan berik
 ## Installation Instructions
 1. Clone repositori ini ke lingkungan lokal pengembang.
     ```bash
-    git clone https://github.com/ABhome-Education/ABhome-Elearning-v3.git
+    git clone git@github.com:syahravi/kaukab.git
     ```
-2. `cd` ke dalam folder aplikasi **ABhome-Elearning-v3** dan jalankan composer install.
+2. `cd` ke dalam folder aplikasi **kaukab** dan jalankan composer install.
    ```bash
    composer install
    ```
