@@ -16,7 +16,7 @@ Sebelum memulai instalasi, pastikan sistem kamu telah memenuhi persyaratan berik
    ```bash
    composer install
    ```
-3. Salin file `.env.local` ke `.env` dan isi dengan database dan sesuaikan detail lainnya.
+3. Salin file `.env.example` ke `.env` dan isi dengan database dan sesuaikan detail lainnya.
    ```bash
     cp .env.local .env
    ```
