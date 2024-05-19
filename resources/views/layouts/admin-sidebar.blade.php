@@ -39,7 +39,7 @@
                     <span>
                         <i class="ti ti-files"></i>
                     </span>
-                    <span class="hide-menu">Matrik dan Bobot Preferensi</span>
+                    <span class="hide-menu">Nilai Normalisasi</span>
                 </a>
             </li>
             <li class="sidebar-item">
