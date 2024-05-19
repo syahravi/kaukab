@@ -1,6 +1,6 @@
 <div>
     <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="/" class="text-nowrap logo-img">
+        <a href="{{ route('admin.dashboard') }}" class="text-nowrap logo-img">
             <img src="/images/logos/dark-logo.svg" width="180" alt="" />
         </a>
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -11,7 +11,7 @@
     <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
         <ul id="sidebarnav">
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('admin.dashboard') }}" aria-expanded="false">
                     <span>
                         <i class="ti ti-layout-dashboard"></i>
                     </span>
