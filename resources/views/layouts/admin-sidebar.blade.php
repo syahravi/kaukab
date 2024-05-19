@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                <a class="sidebar-link" href="/" aria-expanded="false">
                     <span>
                         <i class="ti ti-article"></i>
                     </span>
@@ -27,9 +27,9 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                <a class="sidebar-link" href="/" aria-expanded="false">
                     <span>
-                        <i class="ti ti-article"></i>
+                        <i class="ti ti-receipt"></i>
                     </span>
                     <span class="hide-menu">Data Kriteria</span>
                 </a>
@@ -37,7 +37,7 @@
             <li class="sidebar-item">
                 <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
                     <span>
-                        <i class="ti ti-alert-circle"></i>
+                        <i class="ti ti-files"></i>
                     </span>
                     <span class="hide-menu">Matrik dan Bobot Preferensi</span>
                 </a>
