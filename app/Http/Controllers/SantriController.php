@@ -29,24 +29,25 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
-        $santri = new Santri;
-        $santri->nama_santri = $request->nama_santri;
-        $santri->nama_asrama = $request->nama_asrama;
-        $santri->save();
+        $request->validate([
+            'nama_santri' => 'required|string|max:255',
+            'nama_asrama' => 'required|string|max:255',
+        ]);
 
-        return redirect('admin.santri.index');
+        Santri::create([
+            'nama_santri' => $request->nama_santri,
+            'nama_asrama' => $request->nama_asrama,
+        ]);
+
+        return redirect()->route('admin.santri.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        $santri = Santri::find($id);
+        $santri = Santri::findOrFail($id);
         return view('admin.santri.edit', compact('santri'));
     }
 
@@ -55,12 +56,18 @@ class SantriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $santri = Santri::find($id);
-        $santri->nama_santri = $request->nama_santri;
-        $santri->nama_asrama = $request->nama_asrama;
-        $santri->save();
+        $request->validate([
+            'nama_santri' => 'required|string|max:255',
+            'nama_asrama' => 'required|string|max:255',
+        ]);
 
-        return redirect('admin.santri.index');
+        $santri = Santri::findOrFail($id);
+        $santri->update([
+            'nama_santri' => $request->nama_santri,
+            'nama_asrama' => $request->nama_asrama,
+        ]);
+
+        return redirect()->route('admin.santri.index');
     }
 
     /**
@@ -68,9 +75,9 @@ class SantriController extends Controller
      */
     public function destroy($id)
     {
-        $santri = Santri::find($id);
+        $santri = Santri::findOrFail($id);
         $santri->delete();
 
-        return redirect('/santri');
+        return redirect()->route('admin.santri.index');
     }
 }

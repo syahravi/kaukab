@@ -1,7 +1,7 @@
 <div>
     <div class="brand-logo d-flex align-items-center justify-content-between">
         <a href="{{ route('admin.dashboard') }}" class="text-nowrap logo-img">
-            <img src="/images/logos/dark-logo.svg" width="180" alt="" />
+            <img src="{{asset('images/logos/WhatsApp Image 2024-05-19 at 20.10.07_12bba774.jpg')}}" width="150"  alt="" />
         </a>
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -19,15 +19,16 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('admin.santri.index') }}" aria-expanded="false">
                     <span>
                         <i class="ti ti-article"></i>
                     </span>
                     <span class="hide-menu">Data Santri</span>
                 </a>
             </li>
+            
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('admin.criteria.index') }}" aria-expanded="false">
                     <span>
                         <i class="ti ti-receipt"></i>
                     </span>

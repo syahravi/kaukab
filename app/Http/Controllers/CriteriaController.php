@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Criteria;
+use Illuminate\Http\Request;
+
+class CriteriaController extends Controller
+{
+    public function index()
+    {
+        $criteria = Criteria::all();
+        return view('admin.criteria.index', compact('criteria'));
+    }
+
+    public function create()
+    {
+        return view('admin.criteria.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'kriteria' => 'required',
+            'bobot' => 'required|numeric',
+            'type' => 'required|in:benefit,cost',
+        ]);
+
+        // Generate symbol automatically
+        $criteriaCount = Criteria::count();
+        $symbol = 'C' . ($criteriaCount + 1);
+
+        Criteria::create([
+            'kriteria' => $request->kriteria,
+            'simbol' => $symbol,
+            'bobot' => $request->bobot,
+            'type' => $request->type,
+        ]);
+
+        return redirect()->route('admin.criteria.index')
+            ->with('success', 'Criteria created successfully.');
+    }
+
+    public function edit(Criteria $criteria)
+    {
+        return view('admin.criteria.edit', compact('criteria'));
+    }
+
+    public function update(Request $request, Criteria $criteria)
+    {
+        $request->validate([
+            'kriteria' => 'required',
+            'bobot' => 'required|numeric',
+            'type' => 'required|in:benefit,cost',
+        ]);
+
+        $criteria->update([
+            'kriteria' => $request->kriteria,
+            'bobot' => $request->bobot,
+            'type' => $request->type,
+        ]);
+
+        return redirect()->route('admin.criteria.index')
+            ->with('success', 'Criteria updated successfully');
+    }
+
+    public function destroy(Criteria $criteria)
+    {
+        $criteria->delete();
+
+        return redirect()->route('admin.criteria.index')
+            ->with('success', 'Criteria deleted successfully');
+    }
+}
+
