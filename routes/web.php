@@ -3,8 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\SantriController;
 
-Route::get('/home', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('pages.home');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
