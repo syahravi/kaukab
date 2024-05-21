@@ -9,4 +9,6 @@
 @include('layouts.pages-header')
     @yield('app')
 @include('layouts.pages-footer')
+
+@stack('js')
 @endsection
