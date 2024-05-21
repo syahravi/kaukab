@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CriteriaController;
-use App\Http\Controllers\SantriController;
+use App\Http\Controllers\Admin\CriteriaController;
+use App\Http\Controllers\Admin\SantriController;
 
 Route::get('/', function () {
     return view('pages.home');
