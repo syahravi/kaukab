@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CriteriaController;
 use App\Http\Controllers\Admin\SantriController;
+use App\Http\Controllers\Admin\NormalisasiController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -27,4 +28,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('santri/{id}/edit', [SantriController::class, 'edit'])->name('admin.santri.edit');
     Route::put('santri/{id}', [SantriController::class, 'update'])->name('admin.santri.update');
     Route::delete('santri/{id}', [SantriController::class, 'destroy'])->name('admin.santri.destroy');
+
+    Route::get('nilai-normalisasi', [NormalisasiController::class, 'index'])->name('admin.normalisasi.index');
 });

@@ -26,7 +26,7 @@
                     <span class="hide-menu">Data Santri</span>
                 </a>
             </li>
-            
+
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('admin.criteria.index') }}" aria-expanded="false">
                     <span>
@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                <a class="sidebar-link" href="{{ route('admin.normalisasi.index') }}" aria-expanded="false">
                     <span>
                         <i class="ti ti-files"></i>
                     </span>
