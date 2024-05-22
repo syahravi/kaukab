@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Criteria;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Normalisasi extends Model
 {
@@ -21,6 +22,11 @@ class Normalisasi extends Model
         'kriteria_6',
         'kriteria_7',
     ];
+    public function santri(): BelongsTo
+    {
+        return $this->belongsTo(Santri::class, 'alternatif');
+    }
+
     public function hitungRasio()
     {
         // $max = Criteria::max()

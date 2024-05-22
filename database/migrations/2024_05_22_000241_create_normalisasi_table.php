@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('normalisasi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('alternatif');
+            $table->foreign('alternatif')->references('id')->on('santri');
             $table->integer('kriteria_1');
             $table->integer('kriteria_2');
             $table->integer('kriteria_3');
@@ -23,7 +24,6 @@ return new class extends Migration
             $table->integer('kriteria_7');
             $table->timestamps();
 
-            $table->foreign('alternatif')->references('id')->on('santri')->onDelete('cascade');
         });
     }
 

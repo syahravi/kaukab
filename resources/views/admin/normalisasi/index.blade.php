@@ -22,7 +22,7 @@
             @foreach ($normalisasi as $item)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $item->alternatif }}</td>
+                    <td>{{ $item->santri->nama_santri }}</td>
                     <td>{{ $item->kriteria_1 }}</td>
                     <td>{{ $item->kriteria_2 }}</td>
                     <td>{{ $item->kriteria_3 }}</td>

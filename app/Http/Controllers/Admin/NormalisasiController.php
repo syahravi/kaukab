@@ -25,7 +25,6 @@ class NormalisasiController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $data = $request->validate([
             'alternatif' => 'required',
             'kriteria_1' => 'required',
