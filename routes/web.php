@@ -30,4 +30,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::delete('santri/{id}', [SantriController::class, 'destroy'])->name('admin.santri.destroy');
 
     Route::get('nilai-normalisasi', [NormalisasiController::class, 'index'])->name('admin.normalisasi.index');
+    Route::get('nilai-normalisasi/create', [NormalisasiController::class, 'create'])->name('admin.normalisasi.create');
+    Route::post('nilai-normalisasi/store', [NormalisasiController::class, 'store'])->name('admin.normalisasi.store');
 });

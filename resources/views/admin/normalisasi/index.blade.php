@@ -3,7 +3,7 @@
 @section('app')
 <div class="container">
     <h1>Nilai Normalisasi</h1>
-    <a href="{{ route('admin.santri.create') }}" class="btn btn-primary">Tambah Nilai</a>
+    <a href="{{ route('admin.normalisasi.create') }}" class="btn btn-primary">Tambah Nilai</a>
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
@@ -14,18 +14,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Ravi</td>
-                <td>1saaaa</td>
-                <td>2saaaa</td>
-                <td>3saaaa</td>
-                <td>4saaaa</td>
-                <td>5saaaa</td>
-                <td>6saaaa</td>
-                <td>7saaaa</td>
-                <td>Edit</td>
-            </tr>
+            @foreach ($normalisasi as $item)
+                <tr>
+                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ $item->alternatif }}</td>
+                    <td>{{ $item->kriteria_1 }}</td>
+                    <td>{{ $item->kriteria_2 }}</td>
+                    <td>{{ $item->kriteria_3 }}</td>
+                    <td>{{ $item->kriteria_4 }}</td>
+                    <td>{{ $item->kriteria_5 }}</td>
+                    <td>{{ $item->kriteria_6 }}</td>
+                    <td>{{ $item->kriteria_7 }}</td>
+                    <td>Edit</td>
+                </tr>
+            @endforeach
 
             {{-- @foreach($santri as $s)
             <tr>
