@@ -7,10 +7,15 @@
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
-                <th>Nomor</th>
-                <th>Alternatif</th>
-                <th colspan="7">Kriteria</th>
-                <th>Aksi</th>
+            <th rowspan="2">Nomor</th>
+            <th rowspan="2">Alternatif</th>
+            <th colspan="7">Kriteria</th>
+            <th rowspan="2">Aksi</th>
+            </tr>
+            <tr>
+                @foreach ($kriteria as $item)
+                    <th>{{ $item->simbol }}</th>
+                @endforeach
             </tr>
         </thead>
         <tbody>

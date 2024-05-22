@@ -13,7 +13,8 @@ class NormalisasiController extends Controller
     public function index()
     {
         $normalisasi = Normalisasi::get();
-        return view('admin.normalisasi.index', compact('normalisasi'));
+        $kriteria = Criteria::get();
+        return view('admin.normalisasi.index', compact('normalisasi', 'kriteria'));
     }
     public function create()
     {
@@ -24,6 +25,7 @@ class NormalisasiController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $data = $request->validate([
             'alternatif' => 'required',
             'kriteria_1' => 'required',

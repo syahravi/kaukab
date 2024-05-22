@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Criteria;
 
 class Normalisasi extends Model
 {
@@ -20,4 +21,12 @@ class Normalisasi extends Model
         'kriteria_6',
         'kriteria_7',
     ];
+    public function hitungRasio()
+    {
+        // $max = Criteria::max()
+        // $kriteria1 = $this->kriteria_1;
+        // $kriteria2 = $this->kriteria_2;
+
+        // return $kriteria1 / max($kriteria1, $kriteria2);
+    }
 }

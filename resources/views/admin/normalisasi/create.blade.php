@@ -14,16 +14,13 @@
                     @endforeach
                 </select>
             </div>
-            <div class='form-group'>
-                <label for="kriteria_1">Kriteria 1:</label>
-                <select name="kriteria_1" id="kriteria_1" class="form-control">
-                    <option selected disabled>Pilih kriteria</option>
-                    @foreach($kriteria as $item)
-                        <option value="{{ $item->id }}">{{ $item->simbol . ' ' . $item->type . ' - ' . $item->kriteria }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class='form-group'>
+            @foreach ($kriteria as $item)
+                <div class='form-group'>
+                    <label for="kriteria_1">{{ $item->simbol }}: (Skala {{ $item->type == 'Benefit' ? '0-100': '0-10' }}) {{ $item->kriteria }}</label>
+                    <input type="number" name="kriteria_{{ $loop->index + 1 }}" class="form-control" required>
+                </div>
+            @endforeach
+            {{-- <div class='form-group'>
                 <label for="kriteria_2">Kriteria 2:</label>
                 <select name="kriteria_2" id="kriteria_2" class="form-control">
                     <option selected disabled>Pilih kriteria</option>
@@ -76,7 +73,7 @@
                         <option value="{{ $item->id }}">{{ $item->simbol . ' ' . $item->type . ' - ' . $item->kriteria }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
             <button type="submit" class="btn btn-success">Simpan</button>
             <a href="{{ route('admin.normalisasi.index') }}" class="btn btn-secondary">Batal</a>
         </form>
