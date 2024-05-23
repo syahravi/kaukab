@@ -23,13 +23,13 @@
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $item->santri->nama_santri }}</td>
-                    <td>{{ $item->kriteria_1 }}</td>
-                    <td>{{ $item->kriteria_2 }}</td>
-                    <td>{{ $item->kriteria_3 }}</td>
-                    <td>{{ $item->kriteria_4 }}</td>
-                    <td>{{ $item->kriteria_5 }}</td>
-                    <td>{{ $item->kriteria_6 }}</td>
-                    <td>{{ $item->kriteria_7 }}</td>
+                    <td>{{ $item->kriteria_1 / $c1 }}</td>
+                    <td>{{ $item->kriteria_2 / $c2 }}</td>
+                    <td>{{ $item->kriteria_3 / $c3 }}</td>
+                    <td>{{ $item->kriteria_4 / $c4 }}</td>
+                    <td>{{ $item->kriteria_5 / $c5 }}</td>
+                    <td>{{ $item->kriteria_6 / $c6 }}</td>
+                    <td>{{ $item->kriteria_7 / $c7 }}</td>
                     <td>Edit</td>
                 </tr>
             @endforeach

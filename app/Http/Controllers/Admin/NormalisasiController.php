@@ -14,7 +14,15 @@ class NormalisasiController extends Controller
     {
         $normalisasi = Normalisasi::get();
         $kriteria = Criteria::get();
-        return view('admin.normalisasi.index', compact('normalisasi', 'kriteria'));
+
+        $c1 = Criteria::find(1)->type == 'Benefit' ? Normalisasi::max('kriteria_1') : Normalisasi::min('kriteria_1');
+        $c2 = Criteria::find(2)->type == 'Benefit' ? Normalisasi::max('kriteria_2') : Normalisasi::min('kriteria_2');
+        $c3 = Criteria::find(3)->type == 'Benefit' ? Normalisasi::max('kriteria_3') : Normalisasi::min('kriteria_3');
+        $c4 = Criteria::find(4)->type == 'Benefit' ? Normalisasi::max('kriteria_4') : Normalisasi::min('kriteria_4');
+        $c5 = Criteria::find(5)->type == 'Benefit' ? Normalisasi::max('kriteria_5') : Normalisasi::min('kriteria_5');
+        $c6 = Criteria::find(6)->type == 'Benefit' ? Normalisasi::max('kriteria_6') : Normalisasi::min('kriteria_6');
+        $c7 = Criteria::find(7)->type == 'Benefit' ? Normalisasi::max('kriteria_7') : Normalisasi::min('kriteria_7');
+        return view('admin.normalisasi.index', compact('normalisasi', 'kriteria', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7'));
     }
     public function create()
     {
