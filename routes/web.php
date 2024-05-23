@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CriteriaController;
+use App\Http\Controllers\Admin\NilaiAkhirController;
 use App\Http\Controllers\Admin\SantriController;
 use App\Http\Controllers\Admin\NormalisasiController;
 
@@ -32,4 +33,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('nilai-normalisasi', [NormalisasiController::class, 'index'])->name('admin.normalisasi.index');
     Route::get('nilai-normalisasi/create', [NormalisasiController::class, 'create'])->name('admin.normalisasi.create');
     Route::post('nilai-normalisasi/store', [NormalisasiController::class, 'store'])->name('admin.normalisasi.store');
+
+    Route::get('nilai-akhir', [NilaiAkhirController::class, 'index'])->name('admin.nilai-akhir.index');
 });
