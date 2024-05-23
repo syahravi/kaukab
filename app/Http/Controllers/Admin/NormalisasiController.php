@@ -31,6 +31,13 @@ class NormalisasiController extends Controller
         $kriteria = Criteria::get();
         return view('admin.normalisasi.create', compact('santri', 'kriteria'));
     }
+    public function edit($id)
+    {
+        $normalisasi = Normalisasi::findOrFail($id);
+        $santri = Santri::get();
+        $kriteria = Criteria::get();
+        return view('admin.normalisasi.edit', compact('normalisasi', 'santri', 'kriteria'));
+    }
 
     public function store(Request $request)
     {
@@ -48,16 +55,9 @@ class NormalisasiController extends Controller
         $normalisasi = Normalisasi::create($data);
 
         $nama_santri = $request->alternatif;
-        $preferensi = $normalisasi->kriteria_1*Criteria::find(1)->bobot
-            + $normalisasi->kriteria_2*Criteria::find(2)->bobot
-            + $normalisasi->kriteria_3*Criteria::find(3)->bobot
-            + $normalisasi->kriteria_4*Criteria::find(4)->bobot
-            + $normalisasi->kriteria_5*Criteria::find(5)->bobot
-            + $normalisasi->kriteria_6*Criteria::find(6)->bobot
-            + $normalisasi->kriteria_7*Criteria::find(7)->bobot
-            ;
+        $preferensi = $normalisasi->kriteria_1 * Criteria::find(1)->bobot + $normalisasi->kriteria_2 * Criteria::find(2)->bobot + $normalisasi->kriteria_3 * Criteria::find(3)->bobot + $normalisasi->kriteria_4 * Criteria::find(4)->bobot + $normalisasi->kriteria_5 * Criteria::find(5)->bobot + $normalisasi->kriteria_6 * Criteria::find(6)->bobot + $normalisasi->kriteria_7 * Criteria::find(7)->bobot;
 
-        $data = ['nama_santri'=> $nama_santri, 'preferensi'=> $preferensi];
+        $data = ['nama_santri' => $nama_santri, 'preferensi' => $preferensi];
 
         $nilai_akhir = NilaiAkhir::create($data);
         return redirect()->back()->with('success', 'Data berhasil disimpan');

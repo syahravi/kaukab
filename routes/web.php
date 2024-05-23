@@ -30,9 +30,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('santri/{id}', [SantriController::class, 'update'])->name('admin.santri.update');
     Route::delete('santri/{id}', [SantriController::class, 'destroy'])->name('admin.santri.destroy');
 
-    Route::get('nilai-normalisasi', [NormalisasiController::class, 'index'])->name('admin.normalisasi.index');
-    Route::get('nilai-normalisasi/create', [NormalisasiController::class, 'create'])->name('admin.normalisasi.create');
-    Route::post('nilai-normalisasi/store', [NormalisasiController::class, 'store'])->name('admin.normalisasi.store');
-
+    Route::prefix('admin')->group(function () {
+        Route::get('nilai-normalisasi', [NormalisasiController::class, 'index'])->name('admin.normalisasi.index');
+        Route::get('nilai-normalisasi/create', [NormalisasiController::class, 'create'])->name('admin.normalisasi.create');
+        Route::post('nilai-normalisasi/store', [NormalisasiController::class, 'store'])->name('admin.normalisasi.store');
+        Route::get('nilai-normalisasi/{id}/edit', [NormalisasiController::class, 'edit'])->name('admin.normalisasi.edit');
+        Route::put('nilai-normalisasi/{id}', [NormalisasiController::class, 'update'])->name('admin.normalisasi.update');
+        Route::delete('nilai-normalisasi/{id}', [NormalisasiController::class, 'destroy'])->name('admin.normalisasi.destroy');
+    });
+    
+    // Nilai Akhir routes
     Route::get('nilai-akhir', [NilaiAkhirController::class, 'index'])->name('admin.nilai-akhir.index');
 });

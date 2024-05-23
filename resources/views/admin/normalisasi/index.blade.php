@@ -7,10 +7,10 @@
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
-            <th rowspan="2">Nomor</th>
-            <th rowspan="2">Alternatif</th>
-            <th colspan="7">Kriteria</th>
-            <th rowspan="2">Aksi</th>
+                <th rowspan="2">Nomor</th>
+                <th rowspan="2">Alternatif</th>
+                <th colspan="7">Kriteria</th>
+                <th rowspan="2">Aksi</th>
             </tr>
             <tr>
                 @foreach ($kriteria as $item)
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($normalisasi as $item)
+            @forelse ($normalisasi as $item)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $item->santri->nama_santri }}</td>
@@ -30,25 +30,20 @@
                     <td>{{ $item->kriteria_5 / $c5 }}</td>
                     <td>{{ $item->kriteria_6 / $c6 }}</td>
                     <td>{{ $item->kriteria_7 / $c7 }}</td>
-                    <td>Edit</td>
+                    <td>
+                        <a href="{{ route('admin.normalisasi.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('admin.normalisasi.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
-            @endforeach
-
-            {{-- @foreach($santri as $s)
-            <tr>
-                <td>{{ $s->id }}</td>
-                <td>{{ $s->nama_santri }}</td>
-                <td>{{ $s->nama_asrama }}</td>
-                <td>
-                    <a href="{{ route('admin.santri.edit', $s->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('admin.santri.destroy', $s->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach --}}
+            @empty
+                <tr>
+                    <td colspan="10" class="text-center">Tidak ada data normalisasi</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
