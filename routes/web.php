@@ -4,10 +4,22 @@ use App\Http\Controllers\Admin\CriteriaController;
 use App\Http\Controllers\Admin\NilaiAkhirController;
 use App\Http\Controllers\Admin\SantriController;
 use App\Http\Controllers\Admin\NormalisasiController;
-
+use App\Http\Controllers\Pages\SantriController as PagesSantriController;
+use App\Http\Controllers\Pages\KriteriaController;
+use App\Http\Controllers\Pages\PenilaianController;
 Route::get('/', function () {
     return view('pages.home');
 });
+
+
+// Define the index route for SantriController
+Route::get('santri', [PagesSantriController::class, 'index'])->name('santri');
+// Define the index route for SantriController
+Route::get('kriteria', [KriteriaController::class, 'index'])->name('kriteria');
+Route::get('penilian', [PenilaianController::class, 'index'])->name('penilian');
+Route::get('/penilaian/{nama_santri}/download', [PenilaianController::class, 'download'])->name('penilaian.download');
+Route::get('/penilaian/{nama_santri}', [PenilaianController::class, 'show'])->name('penilaian.show');
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {

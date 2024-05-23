@@ -23,13 +23,13 @@
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $item->santri->nama_santri }}</td>
-                    <td>{{ $item->kriteria_1 / $c1 }}</td>
-                    <td>{{ $item->kriteria_2 / $c2 }}</td>
-                    <td>{{ $item->kriteria_3 / $c3 }}</td>
-                    <td>{{ $item->kriteria_4 / $c4 }}</td>
-                    <td>{{ $item->kriteria_5 / $c5 }}</td>
-                    <td>{{ $item->kriteria_6 / $c6 }}</td>
-                    <td>{{ $item->kriteria_7 / $c7 }}</td>
+                    <td>{{ $c1 != 0 ? $item->kriteria_1 / $c1 : 'N/A' }}</td>
+                    <td>{{ $c2 != 0 ? $item->kriteria_2 / $c2 : 'N/A' }}</td>
+                    <td>{{ $c3 != 0 ? $item->kriteria_3 / $c3 : 'N/A' }}</td>
+                    <td>{{ $c4 != 0 ? $item->kriteria_4 / $c4 : 'N/A' }}</td>
+                    <td>{{ $c5 != 0 ? $item->kriteria_5 / $c5 : 'N/A' }}</td>
+                    <td>{{ $c6 != 0 ? $item->kriteria_6 / $c6 : 'N/A' }}</td>
+                    <td>{{ $c7 != 0 ? $item->kriteria_7 / $c7 : 'N/A' }}</td>
                     <td>
                         <a href="{{ route('admin.normalisasi.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('admin.normalisasi.destroy', $item->id) }}" method="POST" style="display:inline-block;">
