@@ -9,20 +9,17 @@ class Criteria extends Model
 {
     use HasFactory;
 
+    protected $table = 'criteria';
+
     protected $fillable = [
         'kriteria',
         'simbol',
         'bobot',
         'type',
     ];
-    protected $table = 'criteria';
 
-    protected $casts = [
-        'bobot' => 'float',
-    ];
-
-    public function getTypeAttribute($value)
+    public function penilian()
     {
-        return ucfirst($value);
+        return $this->hasMany(Penilian::class);
     }
 }

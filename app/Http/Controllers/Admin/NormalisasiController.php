@@ -4,88 +4,175 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Criteria;
-use App\Models\NilaiAkhir;
 use App\Models\Santri;
-use App\Models\Normalisasi;
+use App\Models\Penilian;
+use App\Models\NilaiAkhir;
 use Illuminate\Http\Request;
 
 class NormalisasiController extends Controller
 {
     public function index()
     {
-        $normalisasi = Normalisasi::get();
-        $kriteria = Criteria::get();
+        $santriList = Santri::all();
+        $kriteria = Criteria::all();
+        $penilian = Penilian::with('criteria')->get()->groupBy('santri_id');
+        $normalizedData = $this->normalizeData($penilian, $kriteria);
 
-        $c1 = Criteria::find(1)->type == 'Benefit' ? Normalisasi::max('kriteria_1') : Normalisasi::min('kriteria_1');
-        $c2 = Criteria::find(2)->type == 'Benefit' ? Normalisasi::max('kriteria_2') : Normalisasi::min('kriteria_2');
-        $c3 = Criteria::find(3)->type == 'Benefit' ? Normalisasi::max('kriteria_3') : Normalisasi::min('kriteria_3');
-        $c4 = Criteria::find(4)->type == 'Benefit' ? Normalisasi::max('kriteria_4') : Normalisasi::min('kriteria_4');
-        $c5 = Criteria::find(5)->type == 'Benefit' ? Normalisasi::max('kriteria_5') : Normalisasi::min('kriteria_5');
-        $c6 = Criteria::find(6)->type == 'Benefit' ? Normalisasi::max('kriteria_6') : Normalisasi::min('kriteria_6');
-        $c7 = Criteria::find(7)->type == 'Benefit' ? Normalisasi::max('kriteria_7') : Normalisasi::min('kriteria_7');
-        return view('admin.normalisasi.index', compact('normalisasi', 'kriteria', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7'));
+        return view('admin.normalisasi.index', compact('santriList', 'kriteria', 'penilian', 'normalizedData'));
     }
+
+    private function normalizeData($penilian, $kriteria)
+    {
+        $maxValues = [];
+        $minValues = [];
+        $normalizedData = [];
+
+        // Mengelompokkan kriteria berdasarkan tipe (benefit atau cost) dan mencari nilai maksimum dan minimum
+        foreach ($kriteria as $k) {
+            if ($k->type == 'benefit') {
+                $maxValues[$k->id] = Penilian::where('criteria_id', $k->id)->max('nilai');
+            } else {
+                $minValues[$k->id] = Penilian::where('criteria_id', $k->id)->min('nilai');
+            }
+        }
+
+        // Normalisasi data
+        foreach ($penilian as $santriId => $penilianGroup) {
+            $santriNormalizedData = [];
+            foreach ($penilianGroup as $pen) {
+                $criteriaId = $pen->criteria_id;
+                if ($kriteria->find($criteriaId)->type == 'benefit') {
+                    $maxValue = $maxValues[$criteriaId] ?? 1;
+                    $normalizedValue = $maxValue != 0 ? $pen->nilai / $maxValue : 0;
+                } else {
+                    $minValue = $minValues[$criteriaId] ?? 1;
+                    $normalizedValue = $pen->nilai != 0 ? $minValue / $pen->nilai : 0;
+                }
+                $normalizedValue = min(round($normalizedValue, 2), 1); // Memastikan nilai tidak lebih dari 1
+                $santriNormalizedData[$criteriaId] = number_format($normalizedValue, 2, ',', '');
+            }
+            $normalizedData[$santriId] = $santriNormalizedData;
+        }
+
+        return $normalizedData;
+    }
+
     public function create()
     {
-        $santri = Santri::get();
-        $kriteria = Criteria::get();
+        $santri = Santri::all();
+        $kriteria = Criteria::all();
         return view('admin.normalisasi.create', compact('santri', 'kriteria'));
-    }
-    public function edit($id)
-    {
-        $normalisasi = Normalisasi::findOrFail($id);
-        $santri = Santri::get();
-        $kriteria = Criteria::get();
-        return view('admin.normalisasi.edit', compact('normalisasi', 'santri', 'kriteria'));
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'alternatif' => 'required',
-            'kriteria_1' => 'required',
-            'kriteria_2' => 'required',
-            'kriteria_3' => 'required',
-            'kriteria_4' => 'required',
-            'kriteria_5' => 'required',
-            'kriteria_6' => 'required',
-            'kriteria_7' => 'required',
+        $request->validate([
+            'santri_id' => 'required|exists:santri,id',
+            'nilai.*' => 'required|numeric',
         ]);
 
-        $normalisasi = Normalisasi::create($data);
+        $santriId = $request->santri_id;
+        $nilai = $request->nilai;
 
-        $nama_santri = $request->alternatif;
-        $preferensi = $normalisasi->kriteria_1 * Criteria::find(1)->bobot + $normalisasi->kriteria_2 * Criteria::find(2)->bobot + $normalisasi->kriteria_3 * Criteria::find(3)->bobot + $normalisasi->kriteria_4 * Criteria::find(4)->bobot + $normalisasi->kriteria_5 * Criteria::find(5)->bobot + $normalisasi->kriteria_6 * Criteria::find(6)->bobot + $normalisasi->kriteria_7 * Criteria::find(7)->bobot;
+        foreach ($nilai as $criteriaId => $value) {
+            Penilian::create([
+                'santri_id' => $santriId,
+                'criteria_id' => $criteriaId,
+                'nilai' => $value,
+            ]);
+        }
 
-        $data = ['nama_santri' => $nama_santri, 'preferensi' => $preferensi];
+        // Hitung dan simpan nilai akhir untuk santri yang bersangkutan
+        $this->calculateAndSaveNilaiAkhir($santriId);
 
-        $nilai_akhir = NilaiAkhir::create($data);
-        return redirect()->back()->with('success', 'Data berhasil disimpan');
+        return redirect()->route('admin.normalisasi.index')->with('success', 'Penilian created successfully.');
+    }
+
+    public function edit($id)
+    {
+        $santri = Santri::all();
+        $kriteria = Criteria::all();
+        $penilian = Penilian::where('santri_id', $id)->get();
+        $normalizedData = $this->normalizeData([$id => $penilian], $kriteria);
+
+        return view('admin.normalisasi.edit', compact('santri', 'kriteria', 'penilian', 'normalizedData', 'id'));
     }
 
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'alternatif' => 'sometimes|required|string|max:255',
-            'kriteria_1' => 'sometimes|required|numeric',
-            'kriteria_2' => 'sometimes|required|numeric',
-            'kriteria_3' => 'sometimes|required|numeric',
-            'kriteria_4' => 'sometimes|required|numeric',
-            'kriteria_5' => 'sometimes|required|numeric',
-            'kriteria_6' => 'sometimes|required|numeric',
-            'kriteria_7' => 'sometimes|required|numeric',
+        $request->validate([
+            'nilai.*' => 'required|numeric',
         ]);
 
-        $normalisasi = Normalisasi::findOrFail($id);
-        $normalisasi->update($data);
-        return response()->json($normalisasi);
+        foreach ($request->nilai as $criteriaId => $nilai) {
+            $penilian = Penilian::where('santri_id', $id)->where('criteria_id', $criteriaId)->first();
+            if ($penilian) {
+                $penilian->update(['nilai' => $nilai]);
+            } else {
+                // Jika tidak ada, buat entri baru untuk criteria_id yang baru ditambahkan
+                Penilian::create([
+                    'santri_id' => $id,
+                    'criteria_id' => $criteriaId,
+                    'nilai' => $nilai,
+                ]);
+            }
+        }
+
+        // Hitung dan simpan nilai akhir untuk santri yang bersangkutan
+        $this->calculateAndSaveNilaiAkhir($id);
+
+        return redirect()->route('admin.normalisasi.index')->with('success', 'Penilian updated successfully.');
     }
 
-    // Delete
+    private function calculateAndSaveNilaiAkhir($santriId)
+    {
+        $santri = Santri::findOrFail($santriId);
+        $penilianGroup = Penilian::where('santri_id', $santriId)->get();
+        $kriteria = Criteria::all();
+        $maxValues = [];
+        $minValues = [];
+        $types = [];
+
+        // Menghitung nilai maksimum dan minimum untuk setiap kriteria
+        foreach ($kriteria as $k) {
+            if ($k->type == 'benefit') {
+                $maxValues[$k->id] = Penilian::where('criteria_id', $k->id)->max('nilai');
+            } else {
+                $minValues[$k->id] = Penilian::where('criteria_id', $k->id)->min('nilai');
+            }
+            $types[$k->id] = $k->type;
+        }
+
+        // Menghitung nilai akhir untuk santri yang bersangkutan
+        $nilaiAkhir = 0;
+
+        foreach ($penilianGroup as $pen) {
+            $criteriaId = $pen->criteria_id;
+            if ($types[$criteriaId] == 'benefit') {
+                $maxValue = $maxValues[$criteriaId] ?? 1;
+                $normalizedValue = $maxValue != 0 ? $pen->nilai / $maxValue : 0;
+            } else {
+                $minValue = $minValues[$criteriaId] ?? 1;
+                $normalizedValue = $pen->nilai != 0 ? $minValue / $pen->nilai : 0;
+            }
+            $normalizedValue = round($normalizedValue, 3); // Membulatkan hingga tiga angka desimal
+            $bobot = $kriteria->find($criteriaId)->bobot;
+            $nilaiAkhir += $normalizedValue * $bobot;
+        }
+
+        $nilaiAkhir = round($nilaiAkhir, 3); // Membulatkan nilai akhir hingga tiga angka desimal
+
+        // Simpan atau update nilai akhir
+        NilaiAkhir::updateOrCreate(['santri_id' => $santriId], ['nilai_akhir' => $nilaiAkhir]);
+    }
+
     public function destroy($id)
     {
-        $normalisasi = Normalisasi::findOrFail($id);
-        $normalisasi->delete();
-        return response()->json(null, 204);
+        Penilian::where('santri_id', $id)->delete();
+
+        // Hapus juga nilai akhir jika ada
+        NilaiAkhir::where('santri_id', $id)->delete();
+
+        return redirect()->route('admin.normalisasi.index')->with('success', 'Penilian deleted successfully.');
     }
 }

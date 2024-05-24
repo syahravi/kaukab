@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Criteria;
+use App\Models\Penilian;
 use Illuminate\Http\Request;
 
 class CriteriaController extends Controller
@@ -37,8 +38,7 @@ class CriteriaController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('admin.criteria.index')
-            ->with('success', 'Criteria created successfully.');
+        return redirect()->route('admin.criteria.index')->with('success', 'Criteria created successfully.');
     }
 
     public function edit(Criteria $criteria)
@@ -60,16 +60,17 @@ class CriteriaController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('admin.criteria.index')
-            ->with('success', 'Criteria updated successfully');
+        return redirect()->route('admin.criteria.index')->with('success', 'Criteria updated successfully');
     }
 
     public function destroy(Criteria $criteria)
     {
+        // Hapus semua penilian terkait kriteria ini terlebih dahulu
+        Penilian::where('criteria_id', $criteria->id)->delete();
+
+        // Kemudian hapus kriteria
         $criteria->delete();
 
-        return redirect()->route('admin.criteria.index')
-            ->with('success', 'Criteria deleted successfully');
+        return redirect()->route('admin.criteria.index')->with('success', 'Criteria deleted successfully');
     }
 }
-

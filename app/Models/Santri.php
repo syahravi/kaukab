@@ -15,8 +15,9 @@ class Santri extends Model
         'nama_santri',
         'nama_asrama',
     ];
-    public function alternatif()
+
+    public function penilian()
     {
-        return $this->hasOne(Normalisasi::class);
+        return $this->hasMany(Penilian::class);
     }
 }

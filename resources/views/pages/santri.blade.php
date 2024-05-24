@@ -2,7 +2,7 @@
 
 @section('app')
 <div class="container mx-auto py-8 px-4">
-    <h1 class="text-4xl font-bold mb-6 text-center">Santri List</h1>
+    <h1 class="text-4xl font-bold mb-6 text-center">Daftar Santri</h1>
     
     <!-- Filter and Search -->
     <div class="flex justify-between mb-6" data-aos="fade-up" data-aos-duration="1000">

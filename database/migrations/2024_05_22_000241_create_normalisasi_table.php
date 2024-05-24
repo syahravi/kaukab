@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('alternatif');
             $table->foreign('alternatif')->references('id')->on('santri');
-            $table->integer('kriteria_1');
-            $table->integer('kriteria_2');
-            $table->integer('kriteria_3');
-            $table->integer('kriteria_4');
-            $table->integer('kriteria_5');
-            $table->integer('kriteria_6');
-            $table->integer('kriteria_7');
+            $table->float('kriteria_1');
+            $table->float('kriteria_2');
+            $table->float('kriteria_3');
+            $table->float('kriteria_4');
+            $table->float('kriteria_5');
+            $table->float('kriteria_6');
+            $table->float('kriteria_7');
             $table->timestamps();
 
         });

@@ -1,6 +1,6 @@
 <div>
     <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="{{ route('admin.dashboard') }}" class="text-nowrap logo-img">
+        <a href="/home" class="text-nowrap logo-img">
             <img src="{{asset('images/logos/WhatsApp Image 2024-05-19 at 20.10.07_12bba774.jpg')}}" width="150"  alt="" />
         </a>
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">

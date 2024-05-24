@@ -18,49 +18,55 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([RoleSeeder::class, UserSeeder::class]);
-
+        $this->call([
+            SantriSeeder::class,
+            PenilianSeeder::class,
+        ]);
+       
+       
+        
         $data = [
             [
-                'kriteria' => 'Kriteria 1',
+                'kriteria' => 'Sikap',
                 'simbol' => 'C1',
-                'bobot' => 0.5,
+                'bobot' => 0.2,
                 'type' => 'benefit',
             ],
             [
-                'kriteria' => 'Kriteria 2',
+                'kriteria' => 'Pelanggaran Keamanan',
                 'simbol' => 'C2',
-                'bobot' => 0.8,
+                'bobot' => 0.19,
                 'type' => 'cost',
             ],
             [
-                'kriteria' => 'Kriteria 3',
+                'kriteria' => 'Absen Ubudiyah',
                 'simbol' => 'C3',
-                'bobot' => 0.6,
-                'type' => 'benefit',
+                'bobot' => 0.18,
+                'type' => 'cost',
             ],
             [
-                'kriteria' => 'Kriteria 4',
+                'kriteria' => ' Absen Halaqoh',
                 'simbol' => 'C4',
-                'bobot' => 0.7,
+                'bobot' => 0.13,
                 'type' => 'cost',
             ],
             [
-                'kriteria' => 'Kriteria 5',
+                'kriteria' => 'Nilai Raport Pesantren',
                 'simbol' => 'C5',
-                'bobot' => 0.9,
+                'bobot' => 0.1,
                 'type' => 'benefit',
             ],
             [
-                'kriteria' => 'Kriteria 6',
+                'kriteria' => ' Nilai Raport Madrasah',
                 'simbol' => 'C6',
-                'bobot' => 0.4,
-                'type' => 'cost',
+                'bobot' => 0.1,
+                'type' => 'benefit',
             ],
             [
-                'kriteria' => 'Kriteria 7',
+                'kriteria' => ' Pelanggaran Bahasa',
                 'simbol' => 'C7',
-                'bobot' => 0.3,
-                'type' => 'benefit',
+                'bobot' => 0.1,
+                'type' => 'cost',
             ],
         ];
 
