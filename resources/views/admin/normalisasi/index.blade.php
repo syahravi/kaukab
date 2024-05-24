@@ -34,7 +34,7 @@
                             <td>{{ $nilai }}</td>
                         @endforeach
                         <td>
-                            <a href="{{ route('admin.normalisasi.edit', $santriId) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.normalisasi.edit', $santriId) }}" class="btn btn-warning">Ubah</a>
                             <form action="{{ route('admin.normalisasi.destroy', $santriId) }}" method="POST"
                                 style="display:inline-block;">
                                 @csrf
@@ -56,7 +56,7 @@
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
-                    <th rowspan="2">Nomor</th>
+                    <th rowspan="2"></th>
                     <th rowspan="2">Alternatif</th>
                     <th colspan="{{ count($kriteria) }}">Kriteria</th>
                 </tr>

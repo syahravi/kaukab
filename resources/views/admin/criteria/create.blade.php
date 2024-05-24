@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Add New Criteria
+                        Tambah kriteria
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
@@ -35,7 +35,7 @@
                                     <option value="cost" {{ old('type') == 'cost' ? 'selected' : '' }}>Cost</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>
                 </div>

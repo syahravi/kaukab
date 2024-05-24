@@ -2,12 +2,12 @@
 
 @section('app')
 <div class="container">
-    <h1>Daftar Santri</h1>
+    <h1>Data Santri</h1>
     <a href="{{ route('admin.santri.create') }}" class="btn btn-primary">Tambah Santri</a>
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Simbol</th>
                 <th>Nama Santri</th>
                 <th>Nama Asrama</th>
                 <th>Aksi</th>
@@ -16,11 +16,11 @@
         <tbody>
             @foreach($santri as $s)
             <tr>
-                <td>{{ $s->id }}</td>
+                <td>A{{ $s->id }}</td>
                 <td>{{ $s->nama_santri }}</td>
                 <td>{{ $s->nama_asrama }}</td>
                 <td>
-                    <a href="{{ route('admin.santri.edit', $s->id) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ route('admin.santri.edit', $s->id) }}" class="btn btn-warning">Ubah</a>
                     <form action="{{ route('admin.santri.destroy', $s->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')

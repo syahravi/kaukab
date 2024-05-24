@@ -2,7 +2,7 @@
 
 @section('app')
 <div class="container mx-auto py-8 px-4">
-    <h1 class="text-4xl font-bold mb-6 text-center">Daftar Santri</h1>
+    <h1 class="text-4xl font-bold mb-6 text-center">Data Santri</h1>
     
     <!-- Filter and Search -->
     <div class="flex justify-between mb-6" data-aos="fade-up" data-aos-duration="1000">
@@ -29,7 +29,7 @@
         <table class="min-w-full bg-white shadow-md rounded-lg">
             <thead class="bg-blue-100">
                 <tr>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">#</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">No</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nama Santri</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nama Asrama</th>
                 </tr>

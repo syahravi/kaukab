@@ -22,4 +22,12 @@ class NilaiAkhirController extends Controller
         $pdf = PDF::loadView('admin.hasil.pdf', compact('nilaiAkhir'));
         return $pdf->download('nilai-akhir.pdf');
     }
+
+    public function destroy($id)
+    {
+        $nilaiAkhir = NilaiAkhir::findOrFail($id);
+        $nilaiAkhir->delete();
+
+        return redirect()->route('admin.hasil.index')->with('success', 'Nilai Akhir deleted successfully.');
+    }
 }

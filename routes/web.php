@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\NormalisasiController;
 use App\Http\Controllers\Pages\SantriController as PagesSantriController;
 use App\Http\Controllers\Pages\KriteriaController;
 use App\Http\Controllers\Pages\PenilaianController;
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('pages.home');
 });
 
@@ -52,8 +52,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::post('normalisasi/save-nilai-akhir', [NormalisasiController::class, 'saveNilaiAkhir'])->name('normalisasi.saveNilaiAkhir');
     });
     
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('nilai-akhir', [NilaiAkhirController::class, 'index'])->name('nilai-akhir.index');
+        Route::delete('nilai-akhir/{id}', [NilaiAkhirController::class, 'destroy'])->name('nilai-akhir.destroy');
+         
+    });
+    Route::get('admin/nilai-akhir/download-pdf', [NilaiAkhirController::class, 'downloadPDF'])->name('admin.nilai-akhir.downloadPDF'); 
     
-    // Nilai Akhir routes
-    Route::get('nilai-akhir', [NilaiAkhirController::class, 'index'])->name('admin.nilai-akhir.index');
-    Route::get('admin/nilai-akhir/download-pdf', [NilaiAkhirController::class, 'downloadPDF'])->name('admin.nilai-akhir.downloadPDF');
 });

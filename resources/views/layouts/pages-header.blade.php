@@ -29,7 +29,7 @@
                 </button>
 
                 <div class="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
-                    <a href="/home" title=""
+                    <a href="/" title=""
                         class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Home </a>
                     <a href="{{ route('santri') }}" title=""
                         class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Santri</a>
@@ -37,7 +37,7 @@
                     <a href="{{ route('kriteria') }}" title=""
                         class="text-base text-black transition-all duration-200 hover:text-opacity-80"> kriteria </a>
                     <a href="{{ route('penilian') }}" title=""
-                        class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Penilian </a>
+                        class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Nilai Akhir</a>
                 </div>
 
                 <a href="/login" title=""

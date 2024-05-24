@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Edit Criteria
+                        Ubah Kriteria
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
@@ -36,7 +36,7 @@
                                     <option value="cost" {{ old('type', $criteria->type) == 'cost' ? 'selected' : '' }}>Cost</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Ubah</button>
                         </form>
                     </div>
                 </div>

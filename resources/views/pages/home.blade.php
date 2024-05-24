@@ -7,11 +7,11 @@
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
                 <div class="text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
-                    <h1 class="mt-4 text-4xl font-bold text-black md:text-5xl lg:mt-8 xl:text-7xl">Sistem pendukung keputusan Santri terbaik</h1>
+                    <h1 class="mt-4 text-4xl font-bold text-black md:text-5xl lg:mt-8 xl:text-7xl">Sistem Pendukung Keputusan Santri Terbaik</h1>
                     <p class="mt-4 text-base text-black lg:mt-8 md:text-xl">PPTQ AL KAUKAB</p>
                 </div>
                 <div class="mt-4 lg:mt-0" data-aos="fade-left" data-aos-duration="1000">
-                    <img class="w-full" src="{{ asset('images/profile/Desain tanpa judul.svg') }}" alt="" />
+                    <img class="w-full" src="{{ asset('images/logos/Desain tanpa judul.svg') }}" alt="" />
                 </div>
             </div>
         </div>

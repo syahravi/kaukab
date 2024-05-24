@@ -6,12 +6,19 @@
         
         <a href="{{ route('admin.nilai-akhir.downloadPDF') }}" class="btn btn-primary mb-3">Download PDF</a>
         
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th>Nomor</th>
                     <th>Nama Santri</th>
                     <th>Nilai Akhir</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -20,10 +27,11 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $nilai->santri->nama_santri }}</td>
                         <td>{{ number_format($nilai->nilai_akhir, 3, ',', '') }}</td>
+                        
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center">Tidak ada nilai akhir yang tersedia</td>
+                        <td colspan="4" class="text-center">Tidak ada nilai akhir yang tersedia</td>
                     </tr>
                 @endforelse
             </tbody>

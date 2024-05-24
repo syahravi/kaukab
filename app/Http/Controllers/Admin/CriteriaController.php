@@ -38,7 +38,7 @@ class CriteriaController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('admin.criteria.index')->with('success', 'Criteria created successfully.');
+        return redirect()->route('admin.criteria.index')->with('Berhasil', 'Kriteria Berhasil Dibuat.');
     }
 
     public function edit(Criteria $criteria)
@@ -60,7 +60,7 @@ class CriteriaController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('admin.criteria.index')->with('success', 'Criteria updated successfully');
+        return redirect()->route('admin.criteria.index')->with('Berhasil', 'Kriteria Berhasil Dibuat.');
     }
 
     public function destroy(Criteria $criteria)
@@ -71,6 +71,6 @@ class CriteriaController extends Controller
         // Kemudian hapus kriteria
         $criteria->delete();
 
-        return redirect()->route('admin.criteria.index')->with('success', 'Criteria deleted successfully');
+        return redirect()->route('admin.criteria.index')->with('Berhasil', 'Kriteria Berhasil Dibuat.');
     }
 }
