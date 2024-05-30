@@ -66,6 +66,22 @@ class PenilianSeeder extends Seeder
             ['santri' => 'A5', 'criteria' => 'C5', 'nilai' => 80],
             ['santri' => 'A5', 'criteria' => 'C6', 'nilai' => 94],
             ['santri' => 'A5', 'criteria' => 'C7', 'nilai' => 8],
+            // Santri A6
+            ['santri' => 'A5', 'criteria' => 'C1', 'nilai' => 98],
+            ['santri' => 'A5', 'criteria' => 'C2', 'nilai' => 8],
+            ['santri' => 'A5', 'criteria' => 'C3', 'nilai' => 9],
+            ['santri' => 'A5', 'criteria' => 'C4', 'nilai' => 5],
+            ['santri' => 'A5', 'criteria' => 'C5', 'nilai' => 82],
+            ['santri' => 'A5', 'criteria' => 'C6', 'nilai' => 96],
+            ['santri' => 'A5', 'criteria' => 'C7', 'nilai' => 6],
+            // Santri A7
+            ['santri' => 'A5', 'criteria' => 'C1', 'nilai' => 95],
+            ['santri' => 'A5', 'criteria' => 'C2', 'nilai' => 7],
+            ['santri' => 'A5', 'criteria' => 'C3', 'nilai' => 8],
+            ['santri' => 'A5', 'criteria' => 'C4', 'nilai' => 4],
+            ['santri' => 'A5', 'criteria' => 'C5', 'nilai' => 84],
+            ['santri' => 'A5', 'criteria' => 'C6', 'nilai' => 95],
+            ['santri' => 'A5', 'criteria' => 'C7', 'nilai' => 9],
         ];
 
         foreach ($penilians as $penilian) {

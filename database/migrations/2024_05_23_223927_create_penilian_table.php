@@ -10,8 +10,8 @@ class CreatePenilianTable extends Migration
     {
         Schema::create('penilian', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('santri_id')->constrained('santri');
-            $table->foreignId('criteria_id')->constrained('criteria');
+            $table->foreignId('santri_id')->constrained('santri')->onDelete('cascade');
+            $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
             $table->float('nilai');
             $table->timestamps();
         });

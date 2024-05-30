@@ -40,7 +40,7 @@
                     <span>
                         <i class="ti ti-files"></i>
                     </span>
-                    <span class="hide-menu">Nilai Normalisasi</span>
+                    <span class="hide-menu">Penilaian</span>
                 </a>
             </li>
             <li class="sidebar-item">

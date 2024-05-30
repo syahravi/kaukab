@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Nilai Akhir Santri</h1>
         
-        <a href="{{ route('admin.nilai-akhir.downloadPDF') }}" class="btn btn-primary mb-3">Download PDF</a>
+        <a href="{{ route('admin.nilai-akhir.downloadPDF') }}" class="btn btn-primary mb-3">Unduh PDF</a>
         
         @if(session('success'))
             <div class="alert alert-success">

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CriteriaController;
 use App\Http\Controllers\Admin\NilaiAkhirController;
@@ -8,10 +9,11 @@ use App\Http\Controllers\Pages\SantriController as PagesSantriController;
 use App\Http\Controllers\Pages\KriteriaController;
 use App\Http\Controllers\Pages\PenilaianController;
 Route::get('/', function () {
+
     return view('pages.home');
 });
 
-
+Route::get('admin/nilai-akhir/download-pdf', [NilaiAkhirController::class, 'downloadPDF'])->name('admin.nilai-akhir.downloadPDF');
 // Define the index route for SantriController
 Route::get('santri', [PagesSantriController::class, 'index'])->name('santri');
 // Define the index route for SantriController
@@ -57,6 +59,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::delete('nilai-akhir/{id}', [NilaiAkhirController::class, 'destroy'])->name('nilai-akhir.destroy');
          
     });
-    Route::get('admin/nilai-akhir/download-pdf', [NilaiAkhirController::class, 'downloadPDF'])->name('admin.nilai-akhir.downloadPDF'); 
+     
     
 });

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Santri;
-
+use App\Models\NilaiAkhir;
+use Illuminate\Support\Facades\DB;
+use App\Models\Penilian;
 class SantriController extends Controller
 {
     /**
@@ -75,9 +77,15 @@ class SantriController extends Controller
      */
     public function destroy($id)
     {
-        $santri = Santri::findOrFail($id);
-        $santri->delete();
-
+        DB::transaction(function () use ($id) {
+            // Hapus catatan terkait di tabel 'nilai_akhir'
+            NilaiAkhir::where('santri_id', $id)->delete();
+            Penilian::where('santri_id', $id)->delete();
+            // Hapus catatan 'santri'
+            $santri = Santri::findOrFail($id);
+            $santri->delete();
+        });
+    
         return redirect()->route('admin.santri.index');
     }
 }

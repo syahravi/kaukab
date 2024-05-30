@@ -2,7 +2,7 @@
 
 @section('app')
     <div class="container">
-        <h1>Nilai Normalisasi</h1>
+        <h1>Penilaian</h1>
         <a href="{{ route('admin.normalisasi.create') }}" class="btn btn-primary mb-3">Tambah Nilai</a>
 
         <!-- Tabel Data Asli -->

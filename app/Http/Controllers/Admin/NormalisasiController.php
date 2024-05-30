@@ -169,7 +169,7 @@ class NormalisasiController extends Controller
     public function destroy($id)
     {
         Penilian::where('santri_id', $id)->delete();
-
+        
         // Hapus juga nilai akhir jika ada
         NilaiAkhir::where('santri_id', $id)->delete();
 

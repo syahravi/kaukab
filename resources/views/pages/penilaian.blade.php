@@ -5,7 +5,7 @@
     <h1 class="text-4xl font-bold mb-6 text-center">Nilai Akhir</h1>
     
         
-    <a href="{{ route('admin.nilai-akhir.downloadPDF') }}" class="btn btn-primary mb-3">Download Data Nilai Akhir </a>
+    <a href="{{ route('admin.nilai-akhir.downloadPDF') }}" class="btn btn-primary mb-3">Unduh Data Nilai Akhir </a>
       
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
         <table class="min-w-full">
